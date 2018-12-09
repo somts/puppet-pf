@@ -1,4 +1,9 @@
 ---
+lookup_options:
+  pf::macros: {merge: {strategy: deep}}
+  pf::filters: {merge: {strategy: deep}}
+  pf::sets: {merge: {strategy: deep}}
+
 pf::conf: /etc/pf.conf
 pf::anchors_d: /etc/pf.anchors
 pf::owner: root
