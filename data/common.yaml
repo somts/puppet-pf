@@ -1,0 +1,31 @@
+---
+pf::conf: /etc/pf.conf
+pf::anchors_d: /etc/pf.anchors
+pf::owner: root
+pf::group: wheel
+pf::service_anchor:
+pf::service_enable: true
+pf::service_ensure: running
+pf::service_name:
+pf::macros:
+  'local_if': {value: lo0}
+pf::filters:
+  '099 all out':
+    action: accept
+    proto: all
+    chain: OUTPUT
+  '997 ICMP':
+    action: accept
+    proto: icmp
+  '998 no TCP':
+    action: reject
+    proto: tcp
+    flags: S/SA
+  '999 no others':
+    action: reject
+    proto: all
+pf::sets:
+  fingerprints: {value: '"/etc/pf.os"'}
+  skip on: {value: '$local_if'}
+pf::tables: {}
+...

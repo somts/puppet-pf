@@ -1,0 +1,11 @@
+fixtures:
+  # Puppet Forge-installed modules need to be kept in-sync with the
+  # versions listed in the output of the `puppet module list`, on the
+  # Puppet Master. See `puppet module search puppetlabs` for a list of
+  # Puppet Labs-supported modules.
+  repositories:
+  forge_modules:
+    concat: "puppetlabs/concat"
+    stdlib: "puppetlabs/stdlib"
+  symlinks:
+    pf: "#{source_dir}"

@@ -1,0 +1,13 @@
+# <%= @name %>
+<%= @_action %> <%= @_chain %><%=
+' log'                              if @log                          %><%=
+' quick'                            if @quick                        %><%=
+" on #{@iniface}"                   if @_chain.eql?('in' ) and not @iniface.nil?  %><%=
+" on #{@outiface}"                  if @_chain.eql?('out') and not @outiface.nil? %><%=
+" proto #{@proto}"                  unless @proto == 'all'           %><%=
+" from #{@source}"                  unless @source.nil?              %><%=
+" port = #{@sport}"                 unless @sport.nil?               %><%=
+" to #{@destination}"               unless @destination.nil?         %><%=
+" port = #{@dport}"                 unless @dport.nil?               %><%=
+' flags ' + Array(@flags).join(' ') unless @flags.nil?               %><%=
+' keep state'                       if @_keep_state                  %>
