@@ -77,8 +77,7 @@ class pf(
   # Macros
   create_resources('pf::macro',$macros)
   # Tables
-  # TODO
-  #create_resources('pf::table',$tables)
+  create_resources('pf::table',$tables)
 
   # Per `man pf.conf` pf statements should be in this order:
 

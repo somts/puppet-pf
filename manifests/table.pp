@@ -12,12 +12,11 @@
 #
 # @param common_class @param common_class_param
 #
-define pf::table (
-  Array $class_list                    = [],
-  Array $ip_list                       = [],
-  Array $fact_list                     = [],
-  Optional[String] $common_class       = undef,
-  Optional[String] $common_class_param = undef,
+define pf::table(
+  Enum['present','absent'] $ensure = 'present',
+  String $key = $name,
+  Array $ip_list = [],
+  Optional[String] $order = '003',
 ) {
   # TODO should class_list be called node_filter?  This might make it easier to
   # filter the nodes that we want, and it looks like a list of classes is still
@@ -26,27 +25,19 @@ define pf::table (
 
   include pf
 
-  if $class_list.size > 0 {
-    if $common_class and $common_class_param {
-      $class_ip_list = get_common_class_param_value_list(
-        $class_list,
-        $common_class,
-        $common_class_param
-      )
-    } else {
-      if $fact_list {
-        $class_ip_list = get_class_ip_list($class_list, $fact_list)
-      } else {
-        $class_ip_list = get_class_ip_list($class_list)
-      }
-    }
-    $final_ip_list = concat($class_ip_list, $ip_list)
+  if $order {
+    $_order = $order
   } else {
-    $final_ip_list = $ip_list
+    validate_re($name,'^\d{3} ',
+    'pf::option $name must begin with 3 numbers when $order is not specified')
+    $rule_split = split($name,' ')
+    $_order = $rule_split[0]
   }
 
-  concat::fragment { "/etc/pf.d/tables/${name}.pf":
-    target  => "${pf::pf_d}/tables.pf",
-    content => template('pf/table.erb'),
+  if $ensure == 'present' {
+    concat::fragment { "pf_table_${name}":
+      target  => $pf::rules_file,
+      content => template('pf/table.erb'),
+    }
   }
 }
