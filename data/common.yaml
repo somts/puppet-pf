@@ -15,7 +15,7 @@ pf::service_name:
 pf::macros:
   'local_if': {value: lo0}
 pf::filters:
-  '099 all out':
+  '990 all out':
     action: accept
     proto: all
     chain: OUTPUT

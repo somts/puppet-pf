@@ -21,8 +21,8 @@ describe 'pf', type: 'class' do
       )
     end
     it do
-      should contain_concat__fragment('pf_filter_099 all out').with_content(
-        "# 099 all out\npass out quick from any to any keep state\n"
+      should contain_concat__fragment('pf_filter_990 all out').with_content(
+        "# 990 all out\npass out quick from any to any keep state\n"
       )
     end
     it do
