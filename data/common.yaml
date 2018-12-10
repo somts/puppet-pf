@@ -1,8 +1,9 @@
 ---
 lookup_options:
-  pf::macros: {merge: {strategy: deep}}
-  pf::filters: {merge: {strategy: deep}}
-  pf::sets: {merge: {strategy: deep}}
+  pf::macros: {merge: {strategy: deep, merge_hash_arrays: true}}
+  pf::filters: {merge: {strategy: deep, merge_hash_arrays: true}}
+  pf::sets: {merge: {strategy: deep, merge_hash_arrays: true}}
+  pf::tables: {merge: {strategy: deep, merge_hash_arrays: true}}
 
 pf::conf: /etc/pf.conf
 pf::anchors_d: /etc/pf.anchors
