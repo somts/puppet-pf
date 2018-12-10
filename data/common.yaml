@@ -19,7 +19,7 @@ pf::filters:
     action: accept
     proto: all
     chain: OUTPUT
-  '997 ICMP':
+  '991 ICMP':
     action: accept
     proto: icmp
   '999 drop others':

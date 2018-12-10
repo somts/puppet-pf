@@ -26,8 +26,8 @@ describe 'pf', type: 'class' do
       )
     end
     it do
-      should contain_concat__fragment('pf_filter_997 ICMP').with_content(
-        'pass in quick proto icmp from any to any keep state label "997 ICMP"'\
+      should contain_concat__fragment('pf_filter_991 ICMP').with_content(
+        'pass in quick proto icmp from any to any keep state label "991 ICMP"'\
         "\n"
       )
     end
