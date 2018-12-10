@@ -38,6 +38,7 @@ define pf::table(
     concat::fragment { "pf_table_${name}":
       target  => $pf::rules_file,
       content => template('pf/table.erb'),
+      order   => $_order,
     }
   }
 }
