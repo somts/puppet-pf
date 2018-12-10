@@ -12,12 +12,12 @@ describe 'pf', type: 'class' do
     end
     it do
       should contain_concat__fragment('pf_set_skip on').with_content(
-        "# set:skip on\nset skip on $local_if\n"
+        "set skip on $local_if\n"
       )
     end
     it do
       should contain_concat__fragment('pf_set_fingerprints').with_content(
-        "# set:fingerprints\nset fingerprints \"/etc/pf.os\"\n"
+        "set fingerprints \"/etc/pf.os\"\n"
       )
     end
     it do
