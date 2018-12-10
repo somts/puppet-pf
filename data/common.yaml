@@ -30,7 +30,11 @@ pf::filters:
     action: reject
     proto: all
 pf::sets:
+  debug: {value: 'urgent'}
   fingerprints: {value: '"/etc/pf.os"'}
+  optimization: {value: normal}
+  ruleset-optimization: {value: basic}
+  state-policy: {value: floating}
   skip on: {value: '$local_if'}
 pf::tables: {}
 ...
