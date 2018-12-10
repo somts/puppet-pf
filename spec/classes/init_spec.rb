@@ -12,33 +12,28 @@ describe 'pf', type: 'class' do
     end
     it do
       should contain_concat__fragment('pf_set_skip on').with_content(
-        "set skip on $local_if\n"
+        "# set:skip on\nset skip on $local_if\n"
       )
     end
     it do
       should contain_concat__fragment('pf_set_fingerprints').with_content(
-        "set fingerprints \"/etc/pf.os\"\n"
+        "# set:fingerprints\nset fingerprints \"/etc/pf.os\"\n"
       )
     end
     it do
       should contain_concat__fragment('pf_filter_990 all out').with_content(
-        "# 990 all out\npass out quick from any to any keep state\n"
+        "pass out quick from any to any keep state label \"990 all out\"\n"
       )
     end
     it do
       should contain_concat__fragment('pf_filter_997 ICMP').with_content(
-        "# 997 ICMP\npass in quick proto icmp from any to any keep state\n"
+        'pass in quick proto icmp from any to any keep state label "997 ICMP"'\
+        "\n"
       )
     end
     it do
-      should contain_concat__fragment('pf_filter_998 no TCP').with_content(
-        "# 998 no TCP\nblock return-rst in quick proto tcp from any " \
-        "to any flags S/SA\n"
-      )
-    end
-    it do
-      should contain_concat__fragment('pf_filter_999 no others').with_content(
-        "# 999 no others\nblock return-icmp(net-unr) in quick from any to any\n"
+      should contain_concat__fragment('pf_filter_999 drop others').with_content(
+        "block in quick from any to any label \"999 drop others\"\n"
       )
     end
   end

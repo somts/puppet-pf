@@ -39,7 +39,7 @@ define pf::set(
   if $ensure == 'present' {
     concat::fragment { "pf_set_${name}":
       target  => $pf::rules_file,
-      content => "set ${key} ${value}\n",
+      content => template('pf/set.erb'),
       order   => $_order,
     }
   }

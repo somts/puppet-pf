@@ -3,19 +3,20 @@
 define pf::filter(
   Enum['present','absent'] $ensure = 'present',
   Enum['accept','drop','reject'] $action = 'accept',
-  String $source = 'any',
-  String $destination = 'any',
-  Optional[Variant[String,Integer]] $sport = undef,
-  Optional[Variant[String,Integer]] $dport = undef,
+  Enum['INPUT','OUTPUT'] $chain = 'INPUT',
   Enum['tcp','udp','icmp','ipv6-icmp','esp','ah','vrrp','igmp','ipencap',
        'ospf','gre','cbt','all'] $proto = 'tcp',
+  Boolean $log = false,
+  Boolean $keep_state = true,
+  Boolean $quick = true,
+  String $destination = 'any',
+  String $source = 'any',
+  Optional[Variant[String,Integer]] $dport = undef,
+  Optional[Variant[String,Integer]] $sport = undef,
   Optional[String] $iniface = undef,
   Optional[String] $outiface = undef,
-  Boolean $log = false,
-  Boolean $quick = true,
-  Enum['INPUT','OUTPUT'] $chain = 'INPUT',
-  Boolean $keep_state = true,
   Optional[Variant[String,Array]] $flags = undef,
+  Optional[Variant[String,Array]] $icmp_type = undef,
 ) {
   validate_re($name,'^\d{3} ','pf::filter $name must begin with 3 numbers')
 

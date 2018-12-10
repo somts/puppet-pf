@@ -21,7 +21,8 @@ describe 'pf::filter', type: 'define' do
         is_expected.to contain_concat__fragment(
           'pf_filter_800 foo'
         ).with_content(
-          "# 800 foo\npass in quick proto tcp from any to any keep state\n"
+          'pass in quick proto tcp from any to any keep state label "800 foo"'\
+          "\n"
         )
       end
 
@@ -33,7 +34,7 @@ describe 'pf::filter', type: 'define' do
           is_expected.to contain_concat__fragment(
             'pf_filter_800 foo'
           ).with_content(
-            "# 800 foo\npass in quick from any to any keep state\n"
+            "pass in quick from any to any keep state label \"800 foo\"\n"
           )
         end
       end
@@ -46,7 +47,8 @@ describe 'pf::filter', type: 'define' do
           is_expected.to contain_concat__fragment(
             'pf_filter_800 foo'
           ).with_content(
-            "# 800 foo\npass in quick from 192.168.2.1 to any keep state\n"
+            'pass in quick from 192.168.2.1 to any keep state label "800 foo"'\
+            "\n"
           )
         end
       end
@@ -67,8 +69,8 @@ describe 'pf::filter', type: 'define' do
             is_expected.to contain_concat__fragment(
               'pf_filter_800 foo'
             ).with_content(
-              "# 800 foo\npass in quick proto tcp from 192.168.2.1 " \
-              "to any port = 22 keep state\n"
+              'pass in quick proto tcp from 192.168.2.1 to any port = 22 '\
+              "keep state label \"800 foo\"\n"
             )
           end
         end

@@ -22,12 +22,8 @@ pf::filters:
   '997 ICMP':
     action: accept
     proto: icmp
-  '998 no TCP':
-    action: reject
-    proto: tcp
-    flags: S/SA
-  '999 no others':
-    action: reject
+  '999 drop others':
+    action: drop
     proto: all
 pf::sets:
   debug: {value: 'urgent'}

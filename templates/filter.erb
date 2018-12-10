@@ -1,4 +1,3 @@
-# <%= @name %>
 <%= @_action %> <%= @_chain %><%=
 ' log'                              if @log                          %><%=
 ' quick'                            if @quick                        %><%=
@@ -10,4 +9,5 @@
 " to #{@destination}"               unless @destination.nil?         %><%=
 " port = #{@dport}"                 unless @dport.nil?               %><%=
 ' flags ' + Array(@flags).join(' ') unless @flags.nil?               %><%=
-' keep state'                       if @_keep_state                  %>
+' keep state'                       if @_keep_state                  %><%=
+" label \"#{@name}\""                                                %>
