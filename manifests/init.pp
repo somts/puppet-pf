@@ -81,18 +81,18 @@ class pf(
 
   # Per `man pf.conf` pf statements should be in this order:
 
-  #   Options
+  # Options
   create_resources('pf::set',$sets)
 
-  #   Traffic Normalization (e.g. scrub)
+  # Traffic Normalization (e.g. scrub)
   # TODO
 
-  #   Queueing
+  # Queueing
   # TODO
 
-  #   Translation (Various forms of NAT)
+  # Translation (Various forms of NAT)
   # TODO
 
-  #   Packet Filtering
+  # Packet Filtering
   create_resources('pf::filter',$filters)
 }

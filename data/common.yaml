@@ -26,12 +26,23 @@ pf::filters:
   '999 drop others':
     action: drop
     proto: all
+# Explicitly set defaults per https://www.openbsd.org/faq/pf/options.html
 pf::sets:
   debug: {value: 'urgent'}
+  block-policy: {value: drop}
   fingerprints: {value: '"/etc/pf.os"'}
+  limit_frags: {key: limit, value: 'frags 5000'}
+  limit_src-nodes: {key: limit, value: 'src-nodes 10000'}
+  limit_states: {key: limit, value: 'states 10000'}
+  limit_tables: {key: limit, value: 'tables 1000'}
+  limit_table-entries: {key: limit, value: 'table-entries 200000'}
+  loginterface: {value: none}
   optimization: {value: normal}
   ruleset-optimization: {value: basic}
   state-policy: {value: floating}
   skip on: {value: '$local_if'}
+  timeout_interval: {key: timeout, value: 'interval 10'}
+  timeout_frag: {key: timeout, value: 'frag 30'}
+  timeout_src.track: {key: timeout, value: 'src.track 0'}
 pf::tables: {}
 ...
