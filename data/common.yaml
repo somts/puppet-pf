@@ -34,7 +34,7 @@ pf::sets:
   limit_frags: {key: limit, value: 'frags 5000'}
   limit_src-nodes: {key: limit, value: 'src-nodes 10000'}
   limit_states: {key: limit, value: 'states 10000'}
-  limit_tables: {key: limit, value: 'tables 1000'}
+  # limit_tables: {key: limit, value: 'tables 1000'}  # unknown error here
   limit_table-entries: {key: limit, value: 'table-entries 200000'}
   loginterface: {value: none}
   optimization: {value: normal}
