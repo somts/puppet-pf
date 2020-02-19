@@ -98,12 +98,12 @@ describe 'pf::filter', type: 'define' do
     end
   end
 
-  on_supported_os.each do |os, facts|
+  on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let :facts do
-        facts
+        os_facts
       end
-      case facts[:osfamily]
+      case os_facts[:osfamily]
       when 'Darwin' then
         it_behaves_like 'Supported Platform'
         it_behaves_like 'Darwin'
